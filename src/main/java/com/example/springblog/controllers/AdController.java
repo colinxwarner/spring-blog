@@ -23,7 +23,6 @@ public class AdController {
     @GetMapping("ads/{id}")
     public String getOne(@PathVariable long id, Model model) {
         model.addAttribute("ad", adDao.getOne(id));
-        System.out.println(model);
         return "ads/show";
     }
 
