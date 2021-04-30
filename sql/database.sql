@@ -16,3 +16,13 @@ create table ads
 INSERT INTO ads (title, description) Values ('Test title','Test Description');
 INSERT INTO ads (title, description) Values ('Test1 title','Test1 Description');
 
+CREATE table posts(
+                      id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                      title VARCHAR(100),
+                      body VARCHAR(255)
+);
+
+INSERT INTO posts(title, body) VALUES
+('Test', 'Test post'),
+('My Post', 'My post'),
+('Beagles', 'Summer, Ducle and Obi')

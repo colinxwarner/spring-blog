@@ -1,7 +1,5 @@
 package com.example.springblog.models;
 
-import org.springframework.stereotype.Controller;
-
 import javax.persistence.*;
 
 @Entity
