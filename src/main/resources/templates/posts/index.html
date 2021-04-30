@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head('Spring blog - Posts')"></head>
+<body>
+<div class="container">
+<h1>Blog Posts</h1>
+<div th:each="post : ${posts}">
+    <h3 th:text="${post.title}"></h3>
+    <p th:text="${post.body}"></p>
+</div>
+<footer th:replace="partials/footer :: footer"></footer>
+</div>
+</body>
+</html>
