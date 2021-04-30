@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Roll-Dice</title>
-</head>
+<head th:replace="partials/header :: head('Roll Dice')"></head>
 <body>
+<div class="container">
+<nav th:replace="partials/navbar :: navbar" />
 <h1>Guess which number the dice will display</h1>
 <ul>
   <li><a href="/roll-dice/1">1</a></li>
@@ -18,5 +17,7 @@
 <p><span th:text="${message}">message</span></p>
 <p>The guess was: <span th:text="${guess}">guess</span></p>
 <p>The dice roll was: <span th:text="${randomNumber}">randomNumber</span></p>
+<footer th:replace="partials/footer :: footer" />
+</div>
 </body>
 </html>
