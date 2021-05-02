@@ -4,10 +4,7 @@ import com.example.springblog.models.Post;
 import com.example.springblog.repository.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +24,32 @@ public class PostController {
     }
 
     @GetMapping("/posts/{id}")
-
     public String postView(@PathVariable long id, Model model) {
         model.addAttribute("post", postDao.getOne(id));
         return "posts/show";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String editView(@PathVariable long id, Model model) {
+        model.addAttribute("post", postDao.getOne(id));
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String body) {
+        Post post = new Post(
+                id,
+                title,
+                body
+        );
+        postDao.save(post);
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String deletePost(@PathVariable long id) {
+        postDao.deleteById(id);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/create")
@@ -44,4 +63,8 @@ public class PostController {
     public String createPost() {
         return "creating a new post";
     }
+
+
+
+
 }

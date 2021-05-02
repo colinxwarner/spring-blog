@@ -5,6 +5,7 @@
   <h1>Blog Post</h1>
   <h3 th:text="${post.title}"></h3>
   <p th:text="${post.body}"></p>
+  <a th:href="@{|/posts/${post.id}/edit|}">Edit Post</a>
 <footer th:replace="partials/footer :: footer"></footer>
 </div>
 </body>
