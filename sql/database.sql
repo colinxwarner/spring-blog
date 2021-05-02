@@ -22,7 +22,12 @@ CREATE table posts(
                       body VARCHAR(255)
 );
 
-INSERT INTO posts(title, body) VALUES
-('Test', 'Test post'),
-('My Post', 'My post'),
-('Beagles', 'Summer, Ducle and Obi')
+DROP TABLE posts;
+
+INSERT INTO posts(title, body, user_id) VALUES
+('Test', 'Test post', 1),
+('My Post', 'My post', 1),
+('Beagles', 'Summer, Ducle and Obi', 1);
+
+INSERT INTO user(email, password, username) VALUES
+    ('kathleen@codeup','password','kathleen');

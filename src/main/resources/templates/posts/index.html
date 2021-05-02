@@ -5,9 +5,12 @@
 <div class="container">
 <h1>Blog Posts</h1>
     <div th:each="post : ${posts}">
+        <p th:text="'By ' + ${post.user.email}" />
         <a th:text="${post.title}" th:href="@{|/posts/${post.id}|}"></a>
         <p th:text="${post.body}"></p>
     </div>
+
+    <a href="/posts/create">Create Post</a>
 <footer th:replace="partials/footer :: footer"></footer>
 </div>
 </body>
