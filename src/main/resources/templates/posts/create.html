@@ -7,7 +7,7 @@
 <nav th:replace="partials/navbar :: navbar"></nav>
 
 <div class="container">
-  <h1 class="my-4">Create Post</h1>
+  <h1>Create Post</h1>
 
   <form th:action="@{/posts/create}" th:method="POST" th:object="${post}">
     <div class="form-group">

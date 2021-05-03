@@ -25,7 +25,6 @@ public class PostController {
     @GetMapping("/posts")
     public String postsIndex(Model model) {
         model.addAttribute("posts", postDao.findAll());
-        System.out.println(model);
         return "posts/index";
     }
 
@@ -42,12 +41,9 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/edit")
-    public String updatePost(@PathVariable long id, @RequestParam String title, @RequestParam String body) {
-        Post post = new Post(
-                id,
-                title,
-                body
-        );
+    public String updatePost(@PathVariable long id, @ModelAttribute Post post) {
+        User user = userDao.getOne((long) 1);
+        post.setUser(user);
         postDao.save(post);
         return "redirect:/posts";
     }
@@ -77,8 +73,4 @@ public class PostController {
         postDao.save(post);
         return "redirect:/posts/" + post.getId();
     }
-
-
-
-
 }

@@ -3,12 +3,13 @@
 <head th:replace="partials/header :: head('Spring blog - Edit Post')"></head>
 <body>
 <div class="container">
-<form th:action="@{|/posts/${post.id}/edit|}" th:method="POST">
+  <h1>Edit Post</h1>
+<form th:action="@{|/posts/${post.id}/edit|}" th:method="POST" th:object="${post}">
   <label for="title">Title</label>
-  <input id="title" type="text" name="title" th:value="${post.title}" th:placeholder="#{post.title}">
+  <input id="title" type="text" name="title" th:field="*{title}" th:placeholder="#{post.title}">
 
   <label for="body">Body</label>
-  <textarea name="body" id="body" cols="30" rows="10" th:text="${post.body}" th:placeholder="#{post.body}"></textarea>
+  <textarea name="body" id="body" cols="30" rows="10" th:text="*{body}" th:placeholder="#{post.body}"></textarea>
 
   <button type="submit">Update Post</button>
 </form>
