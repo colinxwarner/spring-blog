@@ -25,5 +25,4 @@ public class AdController {
         model.addAttribute("ad", adDao.getOne(id));
         return "ads/show";
     }
-
 }
