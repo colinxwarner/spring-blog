@@ -4,6 +4,7 @@ import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
 import com.example.springblog.repository.PostRepository;
 import com.example.springblog.repository.UserRepository;
+import com.example.springblog.service.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +16,12 @@ import java.util.List;
 public class PostController {
     private final PostRepository postDao;
     private final UserRepository userDao;
-
+    private final EmailService emailService;
 
     public PostController(PostRepository postDao, UserRepository userDao) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.emailService = emailService;
     }
 
     @GetMapping("/posts")
@@ -71,6 +73,11 @@ public class PostController {
         post.setUser(user);
 
         postDao.save(post);
+        emailService.prepareAndSend(
+                post,
+                "Created post",
+                "Created post"
+        );
         return "redirect:/posts/" + post.getId();
     }
 }
