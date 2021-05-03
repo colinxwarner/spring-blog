@@ -2,23 +2,20 @@ package com.example.springblog.controllers;
 
 import com.example.springblog.models.Post;
 import com.example.springblog.models.User;
-import com.example.springblog.repository.PostRepository;
-import com.example.springblog.repository.UserRepository;
-import com.example.springblog.service.EmailService;
+import com.example.springblog.repositories.PostRepository;
+import com.example.springblog.repositories.Users;
+import com.example.springblog.services.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 public class PostController {
     private final PostRepository postDao;
-    private final UserRepository userDao;
+    private final Users userDao;
     private final EmailService emailService;
 
-    public PostController(PostRepository postDao, UserRepository userDao, EmailService emailService) {
+    public PostController(PostRepository postDao, Users userDao, EmailService emailService) {
         this.postDao = postDao;
         this.userDao = userDao;
         this.emailService = emailService;

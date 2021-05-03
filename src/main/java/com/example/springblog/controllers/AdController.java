@@ -1,6 +1,6 @@
 package com.example.springblog.controllers;
 
-import com.example.springblog.repository.AdRepository;
+import com.example.springblog.repositories.AdRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
