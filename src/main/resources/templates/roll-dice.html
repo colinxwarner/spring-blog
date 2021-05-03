@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:replace="fragments/navbar :: navbar"></nav>
+<div class="container">
+    <h1>Roll the dice</h1>
+    <h2>Guess what the roll will be:</h2>
+    <div class="container">
+        <div th:if="${userChoice == null}">
+            <a href="/roll-dice/1">1</a>
+            <a href="/roll-dice/2">2</a>
+            <a href="/roll-dice/3">3</a>
+            <a href="/roll-dice/4">4</a>
+            <a href="/roll-dice/5">5</a>
+            <a href="/roll-dice/6">6</a>
+        </div>
+
+
+
+<!--           EXAMPLE OF DOING THE LOGIC IN THE VI-->
+<!--        <div th:if="${userChoice != null}">-->
+<!--            <h3>Your guess: <span th:text="${userChoice}"></span></h3>-->
+<!--            <h3>Number rolled: <span th:text="${diceRoll}"></span></h3>-->
+<!--            <h2 th:if="${isCorrect}">Excellent guess! You got it!</h2>-->
+<!--            <h2 th:if="${!isCorrect}">Sorry, try again.</h2>-->
+<!--        </div>-->
+    </div>
+</div>
+</body>
+</html>
