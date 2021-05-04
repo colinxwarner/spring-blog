@@ -1,33 +1,24 @@
 package com.codeup.lunablog.controllers;
 
 import com.codeup.lunablog.models.Post;
+import com.codeup.lunablog.repositories.PostRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class PostController {
 
+    private final PostRepo postsDao;
+
+    public PostController(PostRepo postsDao) {
+        this.postsDao = postsDao;
+    }
+
     @GetMapping("/posts")
     public String index(Model vModel) {
-
-        List<Post> posts = new ArrayList<>(Arrays.asList(
-                new Post("Post Title 1", "Yadda yadda yadda yadda 1."),
-                new Post("Post Title 2", "Yadda yadda yadda yadda 2."),
-                new Post("Post Title 3", "Yadda yadda yadda yadda 3.")
-        ));
-
-        vModel.addAttribute("posts", posts);
-
+        vModel.addAttribute("posts", postsDao.findAll());
         return "posts/index";
-
     }
 
     @GetMapping("/posts/{id}")
@@ -36,6 +27,36 @@ public class PostController {
         vModel.addAttribute("id", id);
         vModel.addAttribute("post", post);
         return "posts/show";
+    }
+
+    @GetMapping("/posts/{id}/edit")
+    public String edit(@PathVariable long id, Model vModel) {
+        Post postToEdit = postsDao.getOne(id);
+        vModel.addAttribute("post", postToEdit);
+        return "posts/edit";
+    }
+
+    @PostMapping("/posts/{id}/edit")
+    public String update(
+            @PathVariable long id,
+            @RequestParam String title,
+            @RequestParam String body) {
+
+        Post postToUpdate = new Post(
+                id,
+                title,
+                body
+        );
+
+        postsDao.save(postToUpdate);
+
+        return "redirect:/posts";
+    }
+
+    @PostMapping("/posts/{id}/delete")
+    public String delete(@PathVariable long id) {
+        postsDao.deleteById(id);
+        return "redirect:/posts";
     }
 
     @GetMapping("/posts/create")
