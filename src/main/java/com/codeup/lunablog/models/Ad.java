@@ -22,6 +22,12 @@ public class Ad {
     public Ad() {
     }
 
+    public Ad(String title, String description, int priceInCents) {
+        this.title = title;
+        this.description = description;
+        this.priceInCents = priceInCents;
+    }
+
     public Ad(long id, String title, String description, int priceInCents) {
         this.id = id;
         this.title = title;
