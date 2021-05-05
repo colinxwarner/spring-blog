@@ -21,9 +21,11 @@ public class Ad {
     @Column(nullable = false)
     private int priceInCents;
 
+    /*
+        This annotation and field represents the other table in the one-to-one relationship.
+        The cascade allows us to save, update and delete adDetails through an ad.
+     */
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ad_details_id", referencedColumnName = "id")
-    @JsonManagedReference
     private AdDetails adDetails;
 
     public Ad() {
@@ -35,19 +37,19 @@ public class Ad {
         this.priceInCents = priceInCents;
     }
 
+    // added a constructor used when saving an ad with ad details
+    public Ad(String title, String description, int priceInCents, AdDetails adDetails) {
+        this.title = title;
+        this.description = description;
+        this.priceInCents = priceInCents;
+        this.adDetails = adDetails;
+    }
+
     public Ad(long id, String title, String description, int priceInCents) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.priceInCents = priceInCents;
-    }
-
-    public Ad(long id, String title, String description, int priceInCents, AdDetails adDetails) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.priceInCents = priceInCents;
-        this.adDetails = adDetails;
     }
 
     public long getId() {
@@ -81,6 +83,9 @@ public class Ad {
     public void setPriceInCents(int priceInCents) {
         this.priceInCents = priceInCents;
     }
+
+
+    // getter and setter for the adDetails object
 
     public AdDetails getAdDetails() {
         return adDetails;

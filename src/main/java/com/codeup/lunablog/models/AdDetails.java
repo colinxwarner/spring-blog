@@ -14,20 +14,11 @@ public class AdDetails {
 
     private String extraStr;
 
-    @OneToOne(mappedBy = "adDetails")
-    @JsonBackReference
-    private Ad ad;
-
     public AdDetails() {
     }
 
     public AdDetails(String extraStr) {
         this.extraStr = extraStr;
-    }
-
-    public AdDetails(String extraStr, Ad ad) {
-        this.extraStr = extraStr;
-        this.ad = ad;
     }
 
     public long getId() {
@@ -46,20 +37,4 @@ public class AdDetails {
         this.extraStr = extraStr;
     }
 
-    public Ad getAd() {
-        return ad;
-    }
-
-    public void setAd(Ad ad) {
-        this.ad = ad;
-    }
-
-    @Override
-    public String toString() {
-        return "AdDetails{" +
-                "id=" + id +
-                ", extraStr='" + extraStr + '\'' +
-                ", ad=" + ad +
-                '}';
-    }
 }
