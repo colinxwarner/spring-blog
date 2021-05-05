@@ -1,5 +1,7 @@
 package com.codeup.lunablog.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -19,6 +21,11 @@ public class Ad {
     @Column(nullable = false)
     private int priceInCents;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ad_details_id", referencedColumnName = "id")
+    @JsonManagedReference
+    private AdDetails adDetails;
+
     public Ad() {
     }
 
@@ -33,6 +40,14 @@ public class Ad {
         this.title = title;
         this.description = description;
         this.priceInCents = priceInCents;
+    }
+
+    public Ad(long id, String title, String description, int priceInCents, AdDetails adDetails) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.priceInCents = priceInCents;
+        this.adDetails = adDetails;
     }
 
     public long getId() {
@@ -65,5 +80,13 @@ public class Ad {
 
     public void setPriceInCents(int priceInCents) {
         this.priceInCents = priceInCents;
+    }
+
+    public AdDetails getAdDetails() {
+        return adDetails;
+    }
+
+    public void setAdDetails(AdDetails adDetails) {
+        this.adDetails = adDetails;
     }
 }

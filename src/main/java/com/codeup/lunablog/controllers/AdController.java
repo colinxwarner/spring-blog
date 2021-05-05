@@ -1,6 +1,8 @@
 package com.codeup.lunablog.controllers;
 
 import com.codeup.lunablog.models.Ad;
+import com.codeup.lunablog.models.AdDetails;
+import com.codeup.lunablog.repositories.AdDetailsRepo;
 import com.codeup.lunablog.repositories.AdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +18,11 @@ public class AdController {
 
     // Constructor dependency injection
     private final AdRepo adsDao;
+    private final AdDetailsRepo detailsDao;
 
-    public AdController(AdRepo adsDao) {
+    public AdController(AdRepo adsDao, AdDetailsRepo detailsDao) {
         this.adsDao = adsDao;
+        this.detailsDao = detailsDao;
     }
 
     @GetMapping("/ads")
@@ -67,6 +71,43 @@ public class AdController {
        );
        adsDao.save(updatedAd);
        return "redirect:/ads";
+    }
+
+    @GetMapping("/ads/details")
+    public String details() {
+
+// ================= PERSIST
+//        Ad ad = new Ad("New Ad", "New Description", 20);
+//        adsDao.save(ad);
+//        AdDetails adDetails = new AdDetails("A detail");
+//        ad.setAdDetails(adDetails);
+//        adsDao.save(ad);
+
+// ================= ACCESS DATA THROUGH RELATIONSHIP
+//        System.out.println(adsDao.getOne(1L).getAdDetails().getExtraStr());
+
+// ================= UPDATE DETAIL
+//        Ad ad = adsDao.getOne(1L);
+//        AdDetails adDetails = ad.getAdDetails();
+//        adDetails.setExtraStr("Updated Detail");
+//        ad.setAdDetails(adDetails);
+//        adsDao.save(ad);
+
+
+// ================= DELETE DETAIL
+//        Ad ad = new Ad(1, "New Ad", "New Description", 20, null);
+//        adsDao.save(ad);
+//        detailsDao.deleteById(1L);
+
+// ================= CREATE DETAIL AGAIN
+//        AdDetails adDetails = new AdDetails("A detail");
+//        adsDao.getOne(1L).setAdDetails(adDetails);
+//        adsDao.save(adsDao.getOne(1L));
+
+// ================= DELETE AD
+//        adsDao.deleteById(1L);
+
+        return "redirect:/ads";
     }
 
 
