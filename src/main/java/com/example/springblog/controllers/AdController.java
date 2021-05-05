@@ -35,7 +35,6 @@ public class AdController {
     }
 
     @PostMapping("/ads/create")
-    @ResponseBody
     public String create(
             @RequestParam(name = "title") String title,
             @RequestParam(name = "description") String description
@@ -45,6 +44,27 @@ public class AdController {
         ad.setDescription(description);
 
         adDao.save(ad);
-        return "Ad saved!";
+        return "redirect:/ads";
+    }
+
+    @GetMapping("/ads/{id}/edit")
+    public String edit(@PathVariable long id, Model model) {
+        model.addAttribute("ad", adDao.getOne(id));
+        return "ads/edit";
+    }
+
+    @PostMapping("/ads/{id}/edit")
+    public String update(@PathVariable long id, @ModelAttribute Ad ad) {
+        Ad oldAd = adDao.getOne(id);
+        oldAd.setTitle(ad.getTitle());
+        oldAd.setDescription(ad.getDescription());
+        adDao.save(oldAd);
+        return "redirect:/ads/" + id;
+    }
+
+    @PostMapping("/ads/{id}/delete")
+    public String delete(@PathVariable long id) {
+        adDao.deleteById(id);
+        return "redirect:/ads";
     }
 }

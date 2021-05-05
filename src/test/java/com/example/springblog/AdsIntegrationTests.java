@@ -18,8 +18,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.http.HttpSession;
 
-import java.util.Date;
-
 import static org.hamcrest.Matchers.containsString;
 import static org.junit.Assert.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -60,6 +58,7 @@ public class AdsIntegrationTests {
             newUser.setUsername("testUser");
             newUser.setPassword(passwordEncoder.encode("pass"));
             newUser.setEmail("testuser@codeup.com");
+            userDao.save(newUser);
         }
 
 // Throws a Post request to /login and expect a redirection to the Ads index page after being logged in
@@ -116,7 +115,7 @@ public class AdsIntegrationTests {
         this.mvc.perform(get("/ads"))
                 .andExpect(status().isOk())
                 // Test the static content of the page
-                .andExpect(content().string(containsString("Latest ads")))
+                .andExpect(content().string(containsString("Ads")))
                 // Test the dynamic content of the page
                 .andExpect(content().string(containsString(existingAd.getTitle())));
     }
