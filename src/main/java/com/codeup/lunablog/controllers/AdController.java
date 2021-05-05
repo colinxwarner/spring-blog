@@ -1,6 +1,8 @@
 package com.codeup.lunablog.controllers;
 
 import com.codeup.lunablog.models.Ad;
+import com.codeup.lunablog.models.AdDetails;
+import com.codeup.lunablog.repositories.AdDetailsRepo;
 import com.codeup.lunablog.repositories.AdRepo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +17,11 @@ public class AdController {
 
     // Constructor dependency injection
     private final AdRepo adsDao;
+    private final AdDetailsRepo detailsDao;
 
-    public AdController(AdRepo adsDao) {
+    public AdController(AdRepo adsDao, AdDetailsRepo detailsDao) {
         this.adsDao = adsDao;
+        this.detailsDao = detailsDao;
     }
 
     @GetMapping("/ads")
@@ -82,8 +86,8 @@ public class AdController {
                 id
                 title
                 description
-                price_in_cents (foreign key on owning side of relationship)
-                ad_details_id
+                price_in_cents
+                ad_details_id (foreign key on owning side of relationship)
 
             ad_details
                 id
@@ -207,7 +211,7 @@ public class AdController {
 
          */
 
-//        adsDao.deleteById(1L);
+        adsDao.deleteById(1L);
 
         return "redirect:/ads";
     }

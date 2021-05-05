@@ -28,6 +28,50 @@ public class Ad {
     @OneToOne(cascade = CascadeType.ALL)
     private AdDetails adDetails;
 
+
+    /*
+
+        ships and captains (ships is the owning side)
+
+        @Entity
+        public class Ship {
+
+            @OneToOne(cascade = CascadeType.ALL)
+            private Captain captain;
+
+        }
+
+        @Entity
+        public class Captain {
+
+            private String name;
+
+        }
+
+
+
+        @Entity
+        public class Company {
+
+            ???
+
+        }
+
+        @Entity
+        public class CEO {
+
+            ???
+
+        }
+
+
+        ${ship.captain.name}
+
+
+
+     */
+
+
     public Ad() {
     }
 
