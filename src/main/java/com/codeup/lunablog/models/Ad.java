@@ -1,8 +1,10 @@
 package com.codeup.lunablog.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ads")
@@ -21,56 +23,25 @@ public class Ad {
     @Column(nullable = false)
     private int priceInCents;
 
-    /*
-        This annotation and field represents the other table in the one-to-one relationship.
-        The cascade allows us to save, update and delete adDetails through an ad.
-     */
     @OneToOne(cascade = CascadeType.ALL)
     private AdDetails adDetails;
 
-
-    /*
-
-        ships and captains (ships is the owning side)
-
-        @Entity
-        public class Ship {
-
-            @OneToOne(cascade = CascadeType.ALL)
-            private Captain captain;
-
-        }
-
-        @Entity
-        public class Captain {
-
-            private String name;
-
-        }
-
-
-
-        @Entity
-        public class Company {
-
-            ???
-
-        }
-
-        @Entity
-        public class CEO {
-
-            ???
-
-        }
-
-
-        ${ship.captain.name}
-
-
-
+    /**
+     * @OneToMany is on the side that doesn't contain the foreign key
+     * - the cascade allows us to CRUD images through ads
+     * - the mappedBy prevents an unneeded mapping table to be created by Hibernate
+     * - the orphanRemoval will automatically delete any images if they are removed from an ad
+     *
+     * @JsonManagedReference prevents a circular reference that creates, avoiding an infinite loop of JSON
+     * - put on the side without the foreign key
      */
-
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        mappedBy = "ad",
+        orphanRemoval = true
+    )
+    @JsonManagedReference
+    private List<AdImage> adImages;
 
     public Ad() {
     }
@@ -87,6 +58,13 @@ public class Ad {
         this.description = description;
         this.priceInCents = priceInCents;
         this.adDetails = adDetails;
+    }
+
+    public Ad(String title, String description, int priceInCents, List<AdImage> adImages) {
+        this.title = title;
+        this.description = description;
+        this.priceInCents = priceInCents;
+        this.adImages = adImages;
     }
 
     public Ad(long id, String title, String description, int priceInCents) {
@@ -128,7 +106,6 @@ public class Ad {
         this.priceInCents = priceInCents;
     }
 
-
     // getter and setter for the adDetails object
 
     public AdDetails getAdDetails() {
@@ -137,5 +114,13 @@ public class Ad {
 
     public void setAdDetails(AdDetails adDetails) {
         this.adDetails = adDetails;
+    }
+
+    public List<AdImage> getAdImages() {
+        return adImages;
+    }
+
+    public void setAdImages(List<AdImage> adImages) {
+        this.adImages = adImages;
     }
 }
