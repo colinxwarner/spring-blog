@@ -1,6 +1,4 @@
 package com.codeup.lunablog.models;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -43,6 +41,18 @@ public class Ad {
     @OneToOne(cascade = CascadeType.ALL)
     private AdDetails adDetails;
 
+    /**
+     * The @ManyToMany is required on both sides.
+     * Only one side can include the @JoinTable specification and the other must contain the mappedBy.
+     * The @JoinTable is only needed here to have control over the default mapping table column names created by Hibernate.
+     */
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "ads_categories",
+            joinColumns = { @JoinColumn(name = "ad_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+    )
+    private List<AdCategory> adCategories;
 
     public Ad() {
     }
@@ -59,6 +69,13 @@ public class Ad {
         this.description = description;
         this.priceInCents = priceInCents;
         this.adDetails = adDetails;
+    }
+
+    public Ad(String title, String description, List<AdCategory> adCategories, int priceInCents) {
+        this.title = title;
+        this.description = description;
+        this.priceInCents = priceInCents;
+        this.adCategories = adCategories;
     }
 
     public Ad(String title, String description, int priceInCents, List<AdImage> adImages) {
@@ -123,5 +140,13 @@ public class Ad {
 
     public void setAdImages(List<AdImage> adImages) {
         this.adImages = adImages;
+    }
+
+    public List<AdCategory> getAdCategories() {
+        return adCategories;
+    }
+
+    public void setAdCategories(List<AdCategory> adCategories) {
+        this.adCategories = adCategories;
     }
 }
