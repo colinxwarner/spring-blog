@@ -1,8 +1,10 @@
 package com.codeup.lunablog.controllers;
 
 import com.codeup.lunablog.models.Ad;
+import com.codeup.lunablog.models.AdCategory;
 import com.codeup.lunablog.models.AdDetails;
 import com.codeup.lunablog.models.AdImage;
+import com.codeup.lunablog.repositories.AdCategoryRepo;
 import com.codeup.lunablog.repositories.AdDetailsRepo;
 import com.codeup.lunablog.repositories.AdRepo;
 import org.springframework.stereotype.Controller;
@@ -21,10 +23,12 @@ public class AdController {
     // Constructor dependency injection
     private final AdRepo adsDao;
     private final AdDetailsRepo detailsDao;
+    private final AdCategoryRepo catsDao;
 
-    public AdController(AdRepo adsDao, AdDetailsRepo detailsDao) {
+    public AdController(AdRepo adsDao, AdDetailsRepo detailsDao, AdCategoryRepo catsDao) {
         this.adsDao = adsDao;
         this.detailsDao = detailsDao;
+        this.catsDao = catsDao;
     }
 
     @GetMapping("/ads")
@@ -335,6 +339,98 @@ public class AdController {
 //        adsDao.deleteById(1L);
 
         return "redirect:/ads";
+    }
+
+    @GetMapping("/ads/cat")
+    public String categories() {
+
+        /*
+            CREATE ADS WITH NEW CATEGORIES
+         */
+
+//        Ad ad = new Ad(
+//              "Ad Title",
+//              "Ad Description",
+//              300
+//        );
+//
+//        List<AdCategory> categories = new ArrayList<>(Arrays.asList(
+//                new AdCategory("Funny"),
+//                new AdCategory("Cool"),
+//                new AdCategory("Silly")
+//        ));
+//
+//        catsDao.saveAll(categories);
+//
+//        ad.setAdCategories(categories);
+//
+//        adsDao.save(ad);
+
+        /*
+            CREATE NEW CATEGORIES
+         */
+
+//        AdCategory newCat = new AdCategory("Interesting");
+//        catsDao.save(newCat);
+
+        /*
+            EDIT CATEGORY
+         */
+
+//        AdCategory adCat = catsDao.getOne(1L);
+//        adCat.setName("VERY Funny");
+//        catsDao.save(adCat);
+
+        /*
+            REMOVE CATEGORIES ON AD
+         */
+
+//        Ad ad = adsDao.getOne(1L);
+//        List<AdCategory> adCategories = ad.getAdCategories();
+//        adCategories.remove(0);
+//        adsDao.save(ad);
+
+
+        /*
+            ADD EXISTING CATEGORY TO AD
+         */
+
+//        Ad ad = adsDao.getOne(1L);
+//        List<AdCategory> adCategories = ad.getAdCategories();
+//        adCategories.add(catsDao.getOne(1L));
+//        adsDao.save(ad);
+
+        /*
+            DELETE AD
+
+            If CascadeType.ALL is set on the Ad side, when an ad is deleted, it will
+            delete all the categories! To prevent this, CascadeType.DETACH is used.
+
+         */
+
+//        adsDao.deleteById(1L);
+
+        /*
+            DELETE CATEGORY
+
+            This one is tricky. In order to delete a category (or other many-to-many
+            entity on the mappedBy side), you need to first get the list of ads with
+            that category assigned, then remove the category from each ad, thereby
+            freeing up the category to be deleted.
+
+         */
+
+//        AdCategory adCategoryToDelete = catsDao.getOne(1L);
+//        List<Ad> adsToRemoveCategoryFrom = adCategoryToDelete.getAds();
+//        for (Ad ad : adsToRemoveCategoryFrom) {
+//            ad.getAdCategories().remove(adCategoryToDelete);
+//        }
+//        adsDao.saveAll(adsToRemoveCategoryFrom);
+
+//        catsDao.deleteById(1L);
+
+        return "redirect:/ads";
+
     }
 
 

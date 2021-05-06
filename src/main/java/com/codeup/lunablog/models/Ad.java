@@ -1,4 +1,5 @@
 package com.codeup.lunablog.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -46,12 +47,13 @@ public class Ad {
      * Only one side can include the @JoinTable specification and the other must contain the mappedBy.
      * The @JoinTable is only needed here to have control over the default mapping table column names created by Hibernate.
      */
-    @ManyToMany (cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.DETACH)
     @JoinTable(
             name = "ads_categories",
             joinColumns = { @JoinColumn(name = "ad_id") },
             inverseJoinColumns = { @JoinColumn(name = "category_id") }
     )
+    @JsonManagedReference
     private List<AdCategory> adCategories;
 
     public Ad() {

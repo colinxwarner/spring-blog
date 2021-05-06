@@ -1,5 +1,8 @@
 package com.codeup.lunablog.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,9 +17,14 @@ public class AdCategory {
     private String name;
 
     @ManyToMany(mappedBy = "adCategories")
+    @JsonBackReference
     private List<Ad> ads;
 
     public AdCategory() {
+    }
+
+    public AdCategory(String name) {
+        this.name = name;
     }
 
     public AdCategory(String name, List<Ad> ads) {
