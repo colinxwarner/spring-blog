@@ -14,18 +14,6 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private String title;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String description;
-
-    @Column(nullable = false)
-    private int priceInCents;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private AdDetails adDetails;
-
     /**
      * @OneToMany is on the side that doesn't contain the foreign key
      * - the cascade allows us to CRUD images through ads
@@ -42,6 +30,19 @@ public class Ad {
     )
     @JsonManagedReference
     private List<AdImage> adImages;
+
+    @Column(nullable = false)
+    private String title;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String description;
+
+    @Column(nullable = false)
+    private int priceInCents;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private AdDetails adDetails;
+
 
     public Ad() {
     }
