@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Showing ad with id of... <span th:text="${ad.id}"></span></h1>
+<h3 th:text="${ad.title}"></h3>
+<p th:text="${ad.description}"></p>
+<h3>Costs <span th:text="${ad.priceInCents}"></span></h3>
+
+</body>
+</html>
