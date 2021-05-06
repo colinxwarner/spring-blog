@@ -345,7 +345,7 @@ public class AdController {
     public String categories() {
 
         /*
-            CREATE ADS WITH NEW CATEGORIES
+            CREATE AD WITH NEW CATEGORIES
          */
 
 //        Ad ad = new Ad(
@@ -420,14 +420,14 @@ public class AdController {
 
          */
 
-//        AdCategory adCategoryToDelete = catsDao.getOne(1L);
-//        List<Ad> adsToRemoveCategoryFrom = adCategoryToDelete.getAds();
-//        for (Ad ad : adsToRemoveCategoryFrom) {
-//            ad.getAdCategories().remove(adCategoryToDelete);
-//        }
-//        adsDao.saveAll(adsToRemoveCategoryFrom);
+        AdCategory adCategoryToDelete = catsDao.getOne(1L);
+        List<Ad> adsToRemoveCategoryFrom = adCategoryToDelete.getAds();
+        for (Ad ad : adsToRemoveCategoryFrom) {
+            ad.getAdCategories().remove(adCategoryToDelete);
+        }
+        adsDao.saveAll(adsToRemoveCategoryFrom);
 
-//        catsDao.deleteById(1L);
+        catsDao.deleteById(1L);
 
         return "redirect:/ads";
 
