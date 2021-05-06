@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://wwww.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luna Blog: Create Post</title>
+    <th:block th:replace="partials/styles :: styles" />
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+<header th:replace="partials/header :: header('Create Post')"></header>
+
+<!-- use thymeleaf to dynamically create the html for each post -->
+<main class="container">
+    <!-- th:action and th:method are required so that a hidden CSRF token input is included in the form when Spring Security is enabled -->
+    <form th:action="'/posts/create'" th:method="POST">
+        <label for="title">Title</label>
+        <input id="title" type="text" name="title">
+        <label for="body">Body</label>
+        <textarea name="body" id="body" cols="30" rows="10"></textarea>
+        <button>Create Post</button>
+    </form>
+</main>
+
+<footer th:replace="partials/footer :: footer"></footer>
+<th:block th:replace="partials/scripts :: scripts" />
+
+</body>
+</html>

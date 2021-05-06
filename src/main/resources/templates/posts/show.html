@@ -12,6 +12,7 @@
         <div class="card p-1">
             <h3 th:text="${post.title}"></h3>
             <p th:text="${post.body}"></p>
+            <p>Post authored by: <span th:text="${post.user.email}"></span></p>
         </div>
     </main>
     <footer th:replace="partials/footer :: footer"></footer>
