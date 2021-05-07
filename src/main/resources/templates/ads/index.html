@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Ad</title>
+    <div th:replace="partials/links :: links"></div>
+</head>
+<body>
+<header th:replace="partials/header :: header"></header>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<main class="container">
+    <div th:each="item : ${ads}">
+        <form th:action="@{'/ads/' + ${item.id}}">
+            <h2 th:text="${item.title}"></h2>
+            <p th:text="${item.description}"></p>
+            <p th:if="${item.owner}">Email: <span th:text="${item.owner.email}"></span></p>
+            <button>View</button>
+            <br><br>
+        </form>
+        <br>
+    </div>
+</main>
+
+<footer th:replace="partials/footer :: footer"/>
+<div th:replace="partials/scripts :: scripts"/>
+</body>
+</body>
+</html>

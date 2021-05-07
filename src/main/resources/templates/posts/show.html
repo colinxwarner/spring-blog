@@ -1,20 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://wwww.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Luna Blog: Show Post</title>
-    <th:block th:replace="partials/styles :: styles" />
+    <title>Show Post</title>
+    <link th:replace="partials/links :: links"/>
 </head>
-<body class="d-flex flex-column min-vh-100">
-<nav th:replace="partials/navbar :: navbar"></nav>
-<header th:replace="partials/header :: header('Viewing Post ' + ${id})"></header>
+<body>
+<div th:replace="partials/header :: header"></div>
+<nav th:replace="partials/navbar :: navbar"/>
+
 <main class="container">
-    <div class="card p-1">
-        <h3 th:text="${post.title}"></h3>
+    <show_post th:if="${post}">
+        <h2 th:text="${post.title}"></h2>
         <p th:text="${post.body}"></p>
-    </div>
+        <p>Email: <span th:text="${post.user.email}"></span></p>
+        <form style="display: inline" th:action="@{'/posts'}"><button>List</button></form>
+        <form style="display: inline" th:action="@{'/posts/edit/' + ${post.id}}"><button>Edit</button></form>
+        <form style="display: inline" th:action="@{'/posts/delete/' + ${post.id}}"><button>Delete</button></form>
+    </show_post>
 </main>
-<footer th:replace="partials/footer :: footer"></footer>
-<th:block th:replace="partials/scripts :: scripts" />
+
+<div th:replace="partials/footer :: footer"></div>
+<div th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

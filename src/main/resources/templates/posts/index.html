@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://wwww.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Luna Blog: All Posts</title>
-    <th:block th:replace="partials/styles :: styles" />
+    <title>Show Post List</title>
+    <link th:replace="partials/links :: links"/>
 </head>
-<body class="d-flex flex-column min-vh-100">
+<body>
+<div th:replace="partials/header :: header"></div>
+<nav th:replace="partials/navbar :: navbar"/>
 
-<nav th:replace="partials/navbar :: navbar"></nav>
-<header th:replace="partials/header :: header('View All Posts')"></header>
-
-<!-- use thymeleaf to dynamically create the html for each post -->
 <main class="container">
-    <div class="row">
-        <div class="col" th:each="post : ${posts}">
-            <div class="card p-1">
-                <h3 th:text="${post.title}"></h3>
-                <p th:text="${post.body}"></p>
-            </div>
+    <show_posts th:if="${posts}">
+        <div th:each="item : ${posts}">
+            <form th:action="@{'/posts/' + ${item.id}}">
+                <h2 th:text="${item.title}" />
+                <p th:if="${item.body}" th:text="${item.body}" > </p>
+                <button>View</button>
+                <br><br>
+            </form>
         </div>
-    </div>
+    </show_posts>
 </main>
 
-<footer th:replace="partials/footer :: footer"></footer>
-
-<th:block th:replace="partials/scripts :: scripts" />
-
+<div th:replace="partials/footer :: footer"></div>
+<div th:replace="partials/scripts :: scripts"/>
 </body>
 </html>

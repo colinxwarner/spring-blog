@@ -1,13 +1,11 @@
 package com.codeup.springblog.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "ads")
+@Table(name="ads")
 public class Ad {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -15,41 +13,28 @@ public class Ad {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column
     private String description;
 
-    @Column(nullable = false)
-    private int priceInCents;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
-    /*
-        This annotation and field represents the other table in the one-to-one relationship.
-        The cascade allows us to save, update and delete adDetails through an ad.
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    private AdDetails adDetails;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="ads_categories",
+            joinColumns={@JoinColumn(name="ad_id")},
+            inverseJoinColumns={@JoinColumn(name="category_id")}
+    )
+    private List<AdCategory> categories;
 
     public Ad() {
     }
 
-    public Ad(String title, String description, int priceInCents) {
-        this.title = title;
-        this.description = description;
-        this.priceInCents = priceInCents;
-    }
-
-    // added a constructor used when saving an ad with ad details
-    public Ad(String title, String description, int priceInCents, AdDetails adDetails) {
-        this.title = title;
-        this.description = description;
-        this.priceInCents = priceInCents;
-        this.adDetails = adDetails;
-    }
-
-    public Ad(long id, String title, String description, int priceInCents) {
+    public Ad(Long id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.priceInCents = priceInCents;
     }
 
     public long getId() {
@@ -76,22 +61,27 @@ public class Ad {
         this.description = description;
     }
 
-    public int getPriceInCents() {
-        return priceInCents;
+    public User getOwner() {
+        return owner;
     }
 
-    public void setPriceInCents(int priceInCents) {
-        this.priceInCents = priceInCents;
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
-
-    // getter and setter for the adDetails object
-
-    public AdDetails getAdDetails() {
-        return adDetails;
+    public Ad(long id, String title, String description, User owner, List<AdCategory> categories) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.owner = owner;
+        this.categories = categories;
     }
 
-    public void setAdDetails(AdDetails adDetails) {
-        this.adDetails = adDetails;
+    public List<AdCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<AdCategory> categories) {
+        this.categories = categories;
     }
 }
