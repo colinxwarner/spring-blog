@@ -19,11 +19,12 @@ public class HelloController {
         return "Hola " + Coco + "!";
     }
 
-    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
-    @ResponseBody
-    public String addOne(@PathVariable int number) {
-        return number + " plus one is " + (number + 1) + "!";
-    }
+//    Commented out due to run error/ interference with IncrementController
+//    @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String addOne(@PathVariable int number) {
+//        return number + " plus one is " + (number + 1) + "!";
+//    }
 
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable String name, Model model) {
