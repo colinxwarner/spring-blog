@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<section th:fragment="post-form(btnText, url)">
+    <form th:action="${url}" th:method="POST" th:object="${post}">
+        <div class="mb-3">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-control" type="text" th:field="*{title}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="body">Body</label>
+            <textarea class="form-control" cols="30" rows="10" th:field="*{body}"></textarea>
+        </div>
+        <div class="d-grid mx-auto">
+            <button class="btn btn-primary btn-block btn-lg" th:text="${btnText}"></button>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>

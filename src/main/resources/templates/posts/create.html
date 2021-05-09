@@ -12,14 +12,7 @@
 
 <!-- use thymeleaf to dynamically create the html for each post -->
 <main class="container">
-    <!-- th:action and th:method are required so that a hidden CSRF token input is included in the form when Spring Security is enabled -->
-    <form th:action="'/posts/create'" th:method="POST">
-        <label for="title">Title</label>
-        <input id="title" type="text" name="title">
-        <label for="body">Body</label>
-        <textarea name="body" id="body" cols="30" rows="10"></textarea>
-        <button>Create Post</button>
-    </form>
+    <section th:replace="partials/post-form :: post-form('Create Post', '/posts/create')"></section>
 </main>
 
 <footer th:replace="partials/footer :: footer"></footer>
