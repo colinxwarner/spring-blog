@@ -4,6 +4,7 @@ import com.codeup.lunablog.models.Post;
 import com.codeup.lunablog.models.User;
 import com.codeup.lunablog.repositories.PostRepo;
 import com.codeup.lunablog.repositories.UserRepo;
+import com.codeup.lunablog.services.EmailSvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,12 @@ public class PostController {
 
     private final PostRepo postsDao;
     private final UserRepo usersDao;
+    private final EmailSvc emailSvc;
 
-    public PostController(PostRepo postsDao, UserRepo usersDao) {
+    public PostController(PostRepo postsDao, UserRepo usersDao, EmailSvc emailSvc) {
         this.postsDao = postsDao;
         this.usersDao = usersDao;
+        this.emailSvc = emailSvc;
     }
 
     @GetMapping("/posts")
@@ -61,6 +64,7 @@ public class PostController {
         User author = usersDao.getOne(1L);
         post.setUser(author);
         Post savedPost = postsDao.save(post);
+        emailSvc.prepareAndSend(post, "Post Created!", "You have just created a post!");
         return "redirect:/posts/" + savedPost.getId();
     }
 
