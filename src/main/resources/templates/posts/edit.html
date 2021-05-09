@@ -27,20 +27,7 @@
 <th:block th:replace="partials/scripts :: scripts" />
 
 <!-- Delete Confirmation Script -->
-<script>
-    {
-        "use strict";
-        const deleteBtn = document.querySelector('#delete-btn');
-        const deleteForm = document.querySelector('#delete-post-form');
-        deleteBtn.addEventListener('click', e => {
-            e.preventDefault();
-            const willDelete = confirm("Are you sure you want to delete this post?");
-            if (willDelete) {
-                deleteForm.submit();
-            }
-        });
-    }
-</script>
+<script src="/js/delete-confirmation.js"></script>
 
 </body>
 </html>
