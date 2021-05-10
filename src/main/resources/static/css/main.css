@@ -1,3 +1,7 @@
 body {
     background-color: #cdfafa;
 }
+
+.card-styling {
+    min-height: 150px;
+}
