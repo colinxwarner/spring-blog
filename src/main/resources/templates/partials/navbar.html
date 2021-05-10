@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>
@@ -17,6 +17,8 @@
                 <a class="nav-link" href="/posts">Posts</a>
                 <a class="nav-link" href="/posts/create">Create Post</a>
                 <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" id="logout-link" href="#">Logout</a>
+                <form id="logout-form" th:action="@{/logout}" th:method="post"></form>
             </div>
         </div>
     </div>

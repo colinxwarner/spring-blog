@@ -14,6 +14,7 @@
             <p th:text="${post.body}"></p>
             <p>Post authored by: <span th:text="${post.user.email}"></span></p>
         </div>
+        <a class="btn btn-warning" th:href="'/posts/' + ${post.id} + '/edit'" th:text="'Edit Post'"></a>
     </main>
     <footer th:replace="partials/footer :: footer"></footer>
     <th:block th:replace="partials/scripts :: scripts" />
