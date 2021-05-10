@@ -1,8 +1,8 @@
-package com.codeup.lunablog.services;
+package com.codeup.springblog.services;
 
-import com.codeup.lunablog.models.User;
-import com.codeup.lunablog.models.UserWithRoles;
-import com.codeup.lunablog.repositories.UserRepo;
+import com.codeup.springblog.models.User;
+import com.codeup.springblog.models.UserWithRoles;
+import com.codeup.springblog.repositories.UserRepo;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

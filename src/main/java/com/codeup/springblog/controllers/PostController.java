@@ -1,10 +1,10 @@
-package com.codeup.lunablog.controllers;
+package com.codeup.springblog.controllers;
 
-import com.codeup.lunablog.models.Post;
-import com.codeup.lunablog.models.User;
-import com.codeup.lunablog.repositories.PostRepo;
-import com.codeup.lunablog.repositories.UserRepo;
-import com.codeup.lunablog.services.EmailSvc;
+import com.codeup.springblog.models.Post;
+import com.codeup.springblog.models.User;
+import com.codeup.springblog.repositories.PostRepo;
+import com.codeup.springblog.repositories.UserRepo;
+import com.codeup.springblog.services.EmailSvc;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

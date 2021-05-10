@@ -1,4 +1,4 @@
-package com.codeup.lunablog.models;
+package com.codeup.springblog.models;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;

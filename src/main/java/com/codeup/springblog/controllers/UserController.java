@@ -1,7 +1,7 @@
-package com.codeup.lunablog.controllers;
+package com.codeup.springblog.controllers;
 
-import com.codeup.lunablog.models.User;
-import com.codeup.lunablog.repositories.UserRepo;
+import com.codeup.springblog.models.User;
+import com.codeup.springblog.repositories.UserRepo;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserController {
-    private UserRepo userDao;
-    private PasswordEncoder passwordEncoder;
+    private final UserRepo userDao;
+    private final PasswordEncoder passwordEncoder;
 
     public UserController(UserRepo userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
