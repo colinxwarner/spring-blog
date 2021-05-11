@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Ad</title>
+  <div th:replace="partials/links :: links"></div>
+</head>
+<body>
+<header th:replace="partials/header :: header"></header>
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<main class="container">
+  <form action="/ads/edit" method="post">
+    <input type="hidden" th:value="${ad.id}" name="id"/>
+    <label for="title">Ad Title: </label>
+    <input type="text" id="title" name="title" th:value="${ad.title}"><br>
+    <label for="description">Ad text:</label><br>
+    <textarea name="description" id="description" cols="72" rows="5" th:text="${ad.description}"></textarea><br>
+    <button>Submit</button>
+  </form>
+</main>
+
+<footer th:replace="partials/footer :: footer"></footer>
+<div th:replace="partials/scripts :: scripts"></div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+/*body {*/
+/*    background-color: #cdfafa;*/
+/*}*/
+
+.header {
+    font-size: 5em;
+    text-align: center;
+    background-color: aqua;
+    border-color: black;
+    border-style: double;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
+    background-color: aqua;
+    color: black;
+    /*text-align: center;*/
+}
+
+.footer > .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.footer > .navbar {min-height:32px !important}
+
+.di-num {
+    height: 100px;
+    width: 100px;
+    font-size: 5em;
+    display: inline;
+    line-height: 0;
+}
+
+.prompt {
+    color: teal;
+}
+
+#num1 {
+    background-color: red;
+}
+
+#num2 {
+    background-color: green;
+}
+
+#num3 {
+    background-color: blue;
+}
+
+#num4 {
+    background-color: yellow;
+}
+
+#num5 {
+    background-color: magenta;
+}
+
+#num6 {
+    background-color: cyan;
+}

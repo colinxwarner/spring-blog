@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Post List</title>
+    <link th:replace="partials/links :: links"/>
+</head>
+<body>
+<div th:replace="partials/header :: header"></div>
+<nav th:replace="partials/navbar :: navbar"/>
+
+<main class="container">
+    <show_posts th:if="${posts}">
+        <div th:each="item : ${posts}">
+            <form th:action="@{'/posts/' + ${item.id}}">
+                <h2 th:text="${item.title}" />
+                <p th:if="${item.body}" th:text="${item.body}" > </p>
+                <button>View</button>
+                <br><br>
+            </form>
+        </div>
+    </show_posts>
+</main>
+
+<div th:replace="partials/footer :: footer"></div>
+<div th:replace="partials/scripts :: scripts"/>
+</body>
+</html>
