@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html xmlns:th="http://wwww.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,5 +19,16 @@
     </main>
     <footer th:replace="partials/footer :: footer"></footer>
     <th:block th:replace="partials/scripts :: scripts" />
+=======
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head('Spring blog - Show Post')"></head>
+<div class="container"><body>
+  <h1>Blog Post</h1>
+  <h3 th:text="${post.title}"></h3>
+  <p th:text="${post.body}"></p>
+  <a th:href="@{|/posts/${post.id}/edit|}">Edit Post</a>
+<footer th:replace="partials/footer :: footer"></footer>
+</div>
+>>>>>>> tmp
 </body>
 </html>

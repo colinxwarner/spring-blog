@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head('Spring blog - Home page')"></head>
+<body>
+<div class="container">
+<nav th:replace="partials/navbar :: navbar" />
+<h1>Hello, <span th:text="${name}">World</span>!</h1>
+<footer th:replace="partials/footer :: footer" />
+</div>
+</body>
+</html>

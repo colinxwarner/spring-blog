@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html xmlns:th="http://wwww.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,5 +11,15 @@
     <header th:replace="partials/header :: header('Home Page')"></header>
     <footer th:replace="partials/footer :: footer"></footer>
     <th:block th:replace="partials/scripts :: scripts" />
+=======
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="partials/header :: head('Spring blog - Home page')"></head>
+<body>
+<div class="container">
+<nav th:replace="partials/navbar :: navbar" />
+<h1>This is the home page</h1>
+<footer th:replace="partials/footer :: footer" />
+</div>
+>>>>>>> tmp
 </body>
 </html>
